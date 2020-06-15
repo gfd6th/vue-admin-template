@@ -1,0 +1,32 @@
+@tailwind base;
+
+*,
+*::before,
+*::after {
+  border-width: 0;
+  border-style: solid;
+  border-color: theme('borderColor.base', currentColor);
+}
+
+* {
+  color: theme('textColor.primary')
+}
+
+.absolute-y-center {
+  top: 50%;
+  transform: translateY(-50%)
+}
+
+.absolute-x-center {
+  left: 50%;
+  transform: translateX(-50%)
+}
+
+
+@tailwind components;
+
+
+
+
+
+@tailwind utilities;
