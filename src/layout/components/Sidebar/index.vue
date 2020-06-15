@@ -1,54 +1,39 @@
 <template>
-  <div :class="{'has-logo':showLogo}">
-    <logo v-if="showLogo" :collapse="isCollapse" />
-    <el-scrollbar wrap-class="scrollbar-wrapper">
-      <el-menu
-        :default-active="activeMenu"
-        :collapse="isCollapse"
-        :background-color="variables.menuBg"
-        :text-color="variables.menuText"
-        :unique-opened="false"
-        :active-text-color="variables.menuActiveText"
-        :collapse-transition="false"
-        mode="vertical"
-      >
-        <sidebar-item v-for="route in permission_routes" :key="route.path" :item="route" :base-path="route.path" />
-      </el-menu>
-    </el-scrollbar>
+  <div class="fixed h-full flex items-center px-4">
+    <div class="bg-white rounded shadow">
+      <div class="text-center p-3">
+        <svg-icon icon-class="password" />
+        <div class="mt-2 text-xs">
+          户型库
+        </div>
+      </div>
+      <div class="text-center p-3">
+        <svg-icon icon-class="password" />
+        <div class="mt-2 text-xs">
+          素材库
+        </div>
+      </div>
+      <div class="text-center p-3">
+        <svg-icon icon-class="password" />
+        <div class="mt-2 text-xs">
+          灯光库
+        </div>
+      </div>
+      <div class="text-center p-3">
+        <svg-icon icon-class="password" />
+        <div class="mt-2 text-xs">
+          几何库
+        </div>
+      </div>
+
+    </div>
+    <SubSidebar />
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import Logo from './Logo'
-import SidebarItem from './SidebarItem'
-import variables from '@/styles/variables.scss'
-
+import SubSidebar from './SubSidebar'
 export default {
-  components: { SidebarItem, Logo },
-  computed: {
-    ...mapGetters([
-      'permission_routes',
-      'sidebar'
-    ]),
-    activeMenu() {
-      const route = this.$route
-      const { meta, path } = route
-      // if set path, the sidebar will highlight the path you set
-      if (meta.activeMenu) {
-        return meta.activeMenu
-      }
-      return path
-    },
-    showLogo() {
-      return this.$store.state.settings.sidebarLogo
-    },
-    variables() {
-      return variables
-    },
-    isCollapse() {
-      return !this.sidebar.opened
-    }
-  }
+  components: { SubSidebar }
 }
 </script>
