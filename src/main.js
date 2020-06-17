@@ -15,6 +15,13 @@ import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
 
+import * as VueGL from 'vue-gl'
+
+Object.keys(VueGL).forEach((name) => Vue.component(name, VueGL[name]))
+
+const VglObjLoader = require('vue-gl/dist/examples/loaders/vgl-obj-loader')
+Vue.component('VglObjLoader', VglObjLoader)
+
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api

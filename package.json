@@ -22,7 +22,9 @@
     "nprogress": "0.2.0",
     "path-to-regexp": "2.4.0",
     "tailwindcss": "^1.4.6",
+    "three": "^0.117.1",
     "vue": "2.6.10",
+    "vue-gl": "^0.22.0",
     "vue-router": "3.0.6",
     "vuex": "3.1.0"
   },
