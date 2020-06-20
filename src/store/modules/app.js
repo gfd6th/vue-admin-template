@@ -5,10 +5,31 @@ const state = {
     opened: Cookies.get('sidebarStatus') ? !!+Cookies.get('sidebarStatus') : true,
     withoutAnimation: false
   },
-  device: 'desktop'
+  device: 'desktop',
+  dialog: {
+    type: '',
+    content: [
+      // '提交成功，请耐心等待',
+      // `预计等待时间：<span class="text-blue-500">2</span>`,
+      // '如需一对一专人售后，请咨询售后人员'
+    ],
+    show: false
+  }
 }
 
 const mutations = {
+  SHOW_DIALOG: (state, {
+    type = 'success',
+    content
+  }) => {
+    // eslint-disable-next-line no-sequences
+    state.dialog.show = true,
+    state.dialog.type = type,
+    state.dialog.content = content
+  },
+  CLOSE_DIALOG: (state) => {
+    state.dialog.show = false
+  },
   TOGGLE_SIDEBAR: state => {
     state.sidebar.opened = !state.sidebar.opened
     state.sidebar.withoutAnimation = false
@@ -29,6 +50,12 @@ const mutations = {
 }
 
 const actions = {
+  showDialog({ commit }, data) {
+    commit('SHOW_DIALOG', data)
+  },
+  closeDialog({ commit }) {
+    commit('CLOSE_DIALOG')
+  },
   toggleSideBar({ commit }) {
     commit('TOGGLE_SIDEBAR')
   },

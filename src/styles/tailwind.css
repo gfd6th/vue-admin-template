@@ -8,9 +8,9 @@
   border-color: theme('borderColor.base', currentColor);
 }
 
-* {
+/* * {
   color: theme('textColor.primary')
-}
+} */
 
 .absolute-y-center {
   top: 50%;
@@ -20,6 +20,15 @@
 .absolute-x-center {
   left: 50%;
   transform: translateX(-50%)
+}
+
+div.el-message{
+  min-width: 0;
+}
+@screen sm{
+  div.el-message {
+    min-width: 380px;
+  }
 }
 
 
