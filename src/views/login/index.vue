@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="h-full">
     <header class="hidden sm:block bg-white shadow py-6 fixed top-0 w-full">
       <div class=" divide-x-2  container flex items-center">
 
