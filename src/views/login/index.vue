@@ -14,7 +14,7 @@
         <div class="hidden md:block w-11/12">
           <img src="@/assets/bg@2x.png" class="w-full object-cover h-full" alt="">
         </div>
-        <div class="login-container flex h-screen md:h-auto flex-col w-full md:w-auto">
+        <div class="login-container flex h-screen md:h-auto flex-col w-full md:w-4/12">
           <div class="flex-1">
 
             <div class="text-center mt-16">
@@ -53,7 +53,7 @@
           </span> -->
               </el-form-item>
 
-              <div class="mt-8 md:mt-24">
+              <div class="mt-8 md:mt-16">
 
                 <el-button :loading="loading" type="primary" style="width:100%" @click.native.prevent="handleLogin">登录</el-button>
               </div>
@@ -220,7 +220,7 @@ $light_gray:#eee;
     padding: 0 5px 0 15px;
     color: $dark_gray;
     vertical-align: middle;
-    width: 30px;
+    width: 0;
     display: inline-block;
   }
 
