@@ -1,6 +1,6 @@
 <template>
-  <el-form ref="form" :rules="rules" :model="form" label-position="top" class="bg-gray container md:bg-white md:mx-auto rounded md:p-4">
-    <div class="mx-auto px-3 md:w-1/2">
+  <el-form ref="form" :rules="rules" :model="form" label-position="top" class="bg-gray md:bg-white md:mx-auto  md:p-4">
+    <div class="mx-auto xl:w-1/2 lg:w-2/3">
       <div class="card shadow md:shadow-none">
         <h3 class="title m-0">
           工单信息

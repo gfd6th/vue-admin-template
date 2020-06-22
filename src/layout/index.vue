@@ -1,13 +1,17 @@
 <template>
   <div>
-    <header class="hidden sm:block bg-white shadow py-6 fixed top-0 w-full z-10">
-      <div class=" divide-x-2  container flex items-center">
+    <Head />
+    <main class="md:py-32 p-4 container">
+      <div class="-mx-2 flex ">
 
-        <img src="@/assets/logo@2x.png" alt="" class="w-56 pr-4">
-        <span class="text-xl px-4 font-medium text-gray-700">售后工单系统</span>
+        <aside class="w-64 bg-white  hidden md:block rounded mx-2">
+          <!-- <Sidebar class="p-4" /> -->
+          <Left class="p-4" />
+
+        </aside>
+        <app-main class="mx-2" />
       </div>
-    </header>
-    <app-main class="md:py-32 py-4" />
+    </main>
 
     <Dialog />
 
@@ -15,13 +19,19 @@
 </template>
 
 <script>
-import { AppMain } from './components'
+import { AppMain, Sidebar } from './components'
+import Left from '@/layout/components/Left'
+import Head from '@/layout/components/Head'
+
 import Dialog from './components/Dialog'
 export default {
   name: 'Layout',
   components: {
     AppMain,
-    Dialog
+    Dialog,
+    Left,
+    Head,
+    Sidebar
   }
 }
 </script>

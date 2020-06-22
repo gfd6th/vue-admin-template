@@ -47,11 +47,14 @@ export const constantRoutes = [
     path: '/',
     component: Layout,
     // redirect: '/dashboard',
+    meta: { title: '售后工单' },
+    name: 'Dashboard',
+
     children: [{
       path: '/',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: '工单提交', icon: 'dashboard' }
+      meta: { title: '工单提交' }
     }]
   },
 
@@ -60,19 +63,19 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/example/table',
     name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
+    meta: { title: 'Example' },
     children: [
       {
         path: 'table',
         name: 'Table',
         component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        meta: { title: 'Table' }
       },
       {
         path: 'tree',
         name: 'Tree',
         component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        meta: { title: 'Tree' }
       }
     ]
   },
@@ -85,7 +88,7 @@ export const constantRoutes = [
         path: 'index',
         name: 'Form',
         component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        meta: { title: 'Form' }
       }
     ]
   }
