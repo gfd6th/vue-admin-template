@@ -10,7 +10,7 @@
         </div>
         <div class="ml-auto">
           <span class="mr-2 text-secondary">
-            {{ info.telphone | secret }}
+            {{ name | secret }}
           </span>
           <el-button @click="logoutThenToLoginPage">
             退出登录
@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import { getInfo } from '@/utils/auth'
+import { mapActions, mapGetters } from 'vuex'
+// import { getInfo } from '@/utils/auth'
 export default {
   filters: {
     secret(phone) {
@@ -36,13 +36,11 @@ export default {
     ...mapActions('user', ['logout']),
     async logoutThenToLoginPage() {
       await this.logout()
-      this.$router.replace('/user/login')
+      this.$router.replace('/login')
     }
   },
   computed: {
-    info() {
-      return getInfo()
-    }
+    ...mapGetters(['name'])
   }
 
 }

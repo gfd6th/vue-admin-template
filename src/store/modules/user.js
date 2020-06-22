@@ -7,8 +7,8 @@ const getDefaultState = () => {
     token: getToken(),
     name: '',
     avatar: '',
-    roles: [],
-    info: []
+    roles: []
+    // info: []
   }
 }
 
@@ -45,8 +45,8 @@ const actions = {
         console.log(data)
         commit('SET_TOKEN', data.token)
         setToken(data.token)
-        commit('SET_INFO', data)
-        setInfo(data)
+        // commit('SET_INFO', data)
+        // setInfo(data)
         resolve()
       }).catch(error => {
         reject(error)
@@ -64,15 +64,9 @@ const actions = {
           reject('Verification failed, please Login again.')
         }
 
-        const { roles, name, avatar } = data
+        const { phone, avatar } = data
 
-        // roles must be a non-empty array
-        if (!roles || roles.length <= 0) {
-          reject('getInfo: roles must be a non-null array!')
-        }
-
-        commit('SET_ROLES', roles)
-        commit('SET_NAME', name)
+        commit('SET_NAME', phone)
         commit('SET_AVATAR', avatar)
         resolve(data)
       }).catch(error => {
@@ -88,7 +82,7 @@ const actions = {
         removeToken() // must remove  token  first
         resetRouter()
         commit('RESET_STATE')
-        removeInfo()
+        // removeInfo()
         resolve()
       }).catch(error => {
         reject(error)
