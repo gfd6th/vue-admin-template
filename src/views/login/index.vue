@@ -12,17 +12,19 @@
       <div class="md:flex  bg-white rounded overflow-hidden shadow-lg">
 
         <div class="hidden md:block w-11/12">
-          <img src="@/assets/bg@2x.png" class="w-full object-cover h-full" alt="">
+          <img src="@/assets/bg.jpg" class="w-full object-cover h-full" alt="">
         </div>
         <div class="login-container flex h-screen md:h-auto flex-col w-full md:w-4/12">
           <div class="flex-1">
 
             <div class="text-center mt-16">
-              <img src="@/assets/logo@2x.png" class="w-56" alt="">
+              <div class="md:w-48 lg:w-56 w-4/5 text-center px-4 mx-auto ">
+                <img src="@/assets/logo@2x.png" class="w-full" alt="">
+              </div>
               <h3 class="text-2xl md:hidden text-gray-700">售后工单系统</h3>
             </div>
 
-            <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form mx-auto md:mx-0" auto-complete="on" label-position="left">
+            <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form mx-auto md:mx-0 p-8" auto-complete="on" label-position="left">
 
               <el-form-item prop="telphone">
 
@@ -36,12 +38,13 @@
 
               <el-form-item prop="password">
 
-                <span class="svg-container" @click="showPwd">
+                <span class="svg-container  w-4 px-2" @click="showPwd">
                   <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
                 </span>
                 <el-input
                   ref="password"
                   v-model="loginForm.password"
+
                   :type="passwordType"
                   placeholder="密码"
                   name="password"
@@ -158,10 +161,12 @@ $cursor: #fff;
 
 /* reset element-ui css */
 .login-container {
+  .el-form-item__content{
+    @apply flex
+  }
   .el-input {
     display: inline-block;
     height: 47px;
-    width: 85%;
 
     input {
       background: transparent;
@@ -212,15 +217,14 @@ $light_gray:#eee;
     position: relative;
     width: 520px;
     max-width: 100%;
-    padding: 60px 35px 0;
+    // padding: 60px 35px 0;
     overflow: hidden;
   }
 
   .svg-container {
-    padding: 0 5px 0 15px;
     color: $dark_gray;
     vertical-align: middle;
-    width: 0;
+
     display: inline-block;
   }
 
