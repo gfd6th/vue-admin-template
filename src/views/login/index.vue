@@ -1,6 +1,6 @@
 <template>
   <div class="h-full">
-    <header class="hidden sm:block bg-white shadow py-6 fixed top-0 w-full">
+    <header class="hidden sm:block bg-white shadow py-6 fixed top-0 w-full z-10">
       <div class=" divide-x-2  container flex items-center">
 
         <img src="@/assets/logo@2x.png" alt="" class="w-56 pr-4">
@@ -24,7 +24,7 @@
               <h3 class="text-2xl md:hidden text-gray-700">售后工单系统</h3>
             </div>
 
-            <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form mx-auto md:mx-0 p-8" auto-complete="on" label-position="left">
+            <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form mx-auto md:mx-0 p-8 lg:p-8 md:p-4" auto-complete="on" label-position="left">
 
               <el-form-item prop="telphone">
 
@@ -38,9 +38,9 @@
 
               <el-form-item prop="password">
 
-                <span class="svg-container  w-4 px-2" @click="showPwd">
+                <div class="svg-container  w-4 px-2" @click="showPwd">
                   <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
-                </span>
+                </div>
                 <el-input
                   ref="password"
                   v-model="loginForm.password"
@@ -225,6 +225,9 @@ $light_gray:#eee;
     vertical-align: middle;
 
     display: inline-block;
+    .svg-icon{
+      vertical-align: -.5rem
+    }
   }
 
   .title-container {

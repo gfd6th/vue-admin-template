@@ -1,7 +1,7 @@
 <template>
   <section class="app-main h-full">
     <transition name="fade-transform" mode="out-in">
-      <router-view :key="key" />
+      <router-view :key="key" class="min-h-screen" />
     </transition>
   </section>
 </template>

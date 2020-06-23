@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <sidebar-item v-for="route in constantRoutes" :key="route.path" :item="route" :base-path="route.path" />
+    <sidebar-item v-for="route in constantRoutes" :key="route.path" :item="route" :base-path="route.path" class="section" />
   </div>
 </template>
 
@@ -18,3 +18,14 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .section{
+    @apply mt-8;
+    &:first-child{
+      @apply mt-0
+    }
+  }
+
+</style>
+

@@ -34,7 +34,7 @@ import '@/permission' // permission control
 Vue.use(ElementUI)
 
 Vue.config.productionTip = false
-
+import '@/boot'
 new Vue({
   el: '#app',
   router,

@@ -27,12 +27,15 @@ module.exports = {
         'warning': '#E6A23C',
         'danger': '#F56C6C',
         'info': '#909399'
+        // 'orange': '#F08300'
       },
       textColor: {
         'primary': '#303133',
         'regular': '#606266',
         'secondary': '#909399',
         'placeholder': '#C0C4CC'
+        // 'orange': '#F08300'
+
       },
       borderColor: {
         'base': '#DCDFE6',

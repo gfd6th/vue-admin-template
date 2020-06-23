@@ -4,7 +4,7 @@
     <main class="md:py-32 p-4 container">
       <div class="-mx-2 flex ">
 
-        <aside class="w-64 bg-white  hidden md:block rounded mx-2">
+        <aside class="w-64 bg-white  hidden md:block rounded mx-2 min-h-screen">
           <!-- <Sidebar class="p-4" /> -->
           <Left class="p-4" />
 
@@ -22,7 +22,7 @@
 import { AppMain, Sidebar } from './components'
 import Left from '@/layout/components/Left'
 import Head from '@/layout/components/Head'
-
+import ResizeHandler from './mixin/ResizeHandler'
 import Dialog from './components/Dialog'
 export default {
   name: 'Layout',
@@ -32,6 +32,7 @@ export default {
     Left,
     Head,
     Sidebar
-  }
+  },
+  mixins: [ResizeHandler]
 }
 </script>

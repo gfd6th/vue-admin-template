@@ -54,44 +54,84 @@ export const constantRoutes = [
       path: '/',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: '工单提交' }
-    }]
+      meta: { title: '我的售后工单' }
+
+    },
+    {
+      path: '/create',
+      name: 'Create',
+      hidden: true,
+      component: () => import('@/views/dashboard/create'),
+      meta: {
+        title: '提交工单'
+      }
+    }
+    ]
   },
 
   {
-    path: '/example',
+    path: '/support',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example' },
+    meta: {
+      title: '技术支持'
+    },
+
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table' }
+        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
+        meta: {
+          title: '成睿在线学习系统'
+        }
+
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree' }
+        path: 'https://baidu.com',
+        meta: {
+          title: '软件下载'
+        }
       }
     ]
   },
-
   {
-    path: '/form',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form' }
-      }
-    ]
+    path: '*',
+    redirect: '/404',
+    hidden: true
   }
+
+  // {
+  //   path: '/example',
+  //   component: Layout,
+  //   redirect: '/example/table',
+  //   name: 'Example',
+  //   meta: { title: 'Example' },
+  //   children: [
+  //     {
+  //       path: 'table',
+  //       name: 'Table',
+  //       component: () => import('@/views/table/index'),
+  //       meta: { title: 'Table' }
+  //     },
+  //     {
+  //       path: 'tree',
+  //       name: 'Tree',
+  //       component: () => import('@/views/tree/index'),
+  //       meta: { title: 'Tree' }
+  //     }
+  //   ]
+  // },
+
+  // {
+  //   path: '/form',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       name: 'Form',
+  //       component: () => import('@/views/form/index'),
+  //       meta: { title: 'Form' }
+  //     }
+  //   ]
+  // }
 ]
 
 /**
