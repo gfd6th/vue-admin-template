@@ -6,7 +6,7 @@
         <div class=" divide-x-2 flex items-center">
 
           <img src="@/assets/logo@2x.png" alt="" class="w-56 pr-4">
-          <span class="text-xl px-4 font-medium text-gray-700">售后工单系统</span>
+          <!-- <span class="text-xl px-4 font-medium text-gray-700">售后工单系统</span> -->
         </div>
         <div class="ml-auto">
           <span class="mr-2 text-secondary">

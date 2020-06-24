@@ -15,6 +15,9 @@
 
     <Dialog />
 
+    <div class="text-center  w-full text-gray-700 pb-8">
+      Copyright 2016-2020 南昌杰锐软件有限公司ALL Rights Reserved | 赣ICP备 16009993 号
+    </div>
   </div>
 </template>
 

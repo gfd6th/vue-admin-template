@@ -4,7 +4,7 @@
       <div class=" divide-x-2  container flex items-center">
 
         <img src="@/assets/logo@2x.png" alt="" class="w-56 pr-4">
-        <span class="text-xl px-4 font-medium text-gray-700">售后工单系统</span>
+        <!-- <span class="text-xl px-4 font-medium text-gray-700">售后工单系统</span> -->
       </div>
     </header>
     <div class="container h-full flex items-center">
@@ -18,10 +18,10 @@
           <div class="flex-1">
 
             <div class="text-center mt-16">
-              <div class="md:w-48 lg:w-56 w-4/5 text-center px-4 mx-auto ">
+              <!-- <div class="md:w-48 lg:w-56 w-4/5 text-center px-4 mx-auto ">
                 <img src="@/assets/logo@2x.png" class="w-full" alt="">
-              </div>
-              <h3 class="text-2xl md:hidden text-gray-700">售后工单系统</h3>
+              </div> -->
+              <h3 class="text-xl text-gray-700">售后工单系统</h3>
             </div>
 
             <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form mx-auto md:mx-0 p-8 lg:p-8 md:p-4" auto-complete="on" label-position="left">
@@ -38,15 +38,15 @@
 
               <el-form-item prop="password">
 
-                <div class="svg-container  px-2" @click="showPwd">
+                <!-- <div class="svg-container  px-2" @click="showPwd">
                   <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
-                </div>
+                </div> -->
                 <el-input
                   ref="password"
                   v-model="loginForm.password"
 
-                  :type="passwordType"
-                  placeholder="密码"
+                  type="password"
+                  placeholder="请输入密码"
                   name="password"
                   clearable
                   @keyup.enter.native="handleLogin"
@@ -67,6 +67,9 @@
         </div>
       </div>
 
+    </div>
+    <div class="text-center fixed w-full text-gray-700" style="bottom: 2rem">
+      Copyright 2016-2020 南昌杰锐软件有限公司ALL Rights Reserved | 赣ICP备 16009993 号
     </div>
   </div>
 </template>
@@ -163,6 +166,7 @@ $cursor: #fff;
   .el-form-item__content{
     @apply flex
   }
+
   .el-input {
     display: inline-block;
     height: 47px;
@@ -172,7 +176,7 @@ $cursor: #fff;
       border: 0px;
       -webkit-appearance: none;
       border-radius: 0px;
-      padding: 12px 5px 12px 15px;
+      padding: 12px 0;
       // color: $light_gray;
       height: 47px;
       // caret-color: $cursor;
@@ -189,9 +193,10 @@ $cursor: #fff;
   }
 
   .el-form-item {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    // border: 1px solid rgba(255, 255, 255, 0.1);
+    @apply border-b;
+    background: none;
+    // border-radius: 5px;
     // color: #454545;
   }
 }
