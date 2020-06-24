@@ -11,9 +11,9 @@
 
     <div v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
       <div slot="title">
-        <h4 v-if="item.meta" class="my-3">
+        <h3 v-if="item.meta" class="my-3">
           {{ item.meta.title }}
-        </h4>
+        </h3>
         <!-- <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" /> -->
       </div>
       <sidebar-item

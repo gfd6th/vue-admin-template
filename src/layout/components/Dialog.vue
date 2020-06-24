@@ -23,7 +23,7 @@
       </div>
       <span slot="footer" class="dialog-footer">
         <!-- <el-button @click="dialogVisible = false">取 消</el-button> -->
-        <el-button type="primary" class="w-32" @click="closeDialog">确 定</el-button>
+        <el-button type="primary" class="w-32" @click="close">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -36,7 +36,11 @@ export default {
     ...mapState('app', ['dialog'])
   },
   methods: {
-    ...mapActions('app', ['closeDialog'])
+    ...mapActions('app', ['closeDialog']),
+    close() {
+      this.closeDialog()
+      this.handleNavTo({ url: '/' })
+    }
   }
 }
 </script>

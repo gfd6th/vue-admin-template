@@ -78,14 +78,14 @@ export const constantRoutes = [
 
     children: [
       {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
+        path: 'http://help.chenrysoft.com/#/',
         meta: {
           title: '成睿在线学习系统'
         }
 
       },
       {
-        path: 'https://baidu.com',
+        path: 'http://help.chenrysoft.com/#/download',
         meta: {
           title: '软件下载'
         }

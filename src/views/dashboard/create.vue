@@ -59,11 +59,17 @@
               </span>
               <img src="@/icons/webfuzhidizhi@2x.png" class="w-5 h-5 ml-2" alt="">
             </div>
+
           </div>
           <el-input
             value="https://sunlogin.oray.com/personal/download/"
             disabled
-          />
+          >
+            <el-button slot="append">
+
+              <el-link type="primary" :underline="false" target="_blank" href="https://sunlogin.oray.com/personal/download/">下载</el-link>
+            </el-button>
+          </el-input>
         </el-form-item>
 
       </div>

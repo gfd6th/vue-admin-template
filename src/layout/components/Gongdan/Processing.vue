@@ -29,7 +29,7 @@
           {{ scope.row.subtime | format }}
         </template>
       </el-table-column>
-      <el-table-column
+      <!-- <el-table-column
         align="center"
         prop="overtime"
         label="完成时间"
@@ -37,7 +37,7 @@
         <template slot-scope="scope">
           {{ scope.row.overtime | format }}
         </template>
-      </el-table-column>
+      </el-table-column> -->
       <el-table-column
         align="center"
         prop="worknum"
@@ -59,6 +59,7 @@
     </el-table>
 
     <el-dialog
+
       ref="form"
       :show-close="false"
       :visible.sync="show"
@@ -143,11 +144,11 @@
           </div>
         </div>
       </el-form>
-      <span slot="footer" class="dialog-footer">
+      <div slot="footer" class="dialog-footer text-center">
 
         <el-button type="primary" @click="update">保存</el-button>
         <el-button @click="show = false">取消</el-button>
-      </span>
+      </div>
     </el-dialog>
   </div>
 

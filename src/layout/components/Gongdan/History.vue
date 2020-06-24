@@ -173,9 +173,9 @@
           </div>
         </div>
       </el-form>
-      <span slot="footer" class="dialog-footer">
+      <div slot="footer" class="dialog-footer text-center">
         <el-button @click="show = false">关闭</el-button>
-      </span>
+      </div>
     </el-dialog>
 
     <el-dialog
@@ -213,11 +213,11 @@
           </el-form-item>
         </el-form>
       </div>
-      <span slot="footer" class="dialog-footer">
+      <div slot="footer" class="dialog-footer text-center">
         <el-button type="primary" @click="postRating">评分</el-button>
 
         <el-button @click="closeRatingModal">关闭</el-button>
-      </span>
+      </div>
     </el-dialog>
 
   </div>

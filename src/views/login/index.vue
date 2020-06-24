@@ -38,7 +38,7 @@
 
               <el-form-item prop="password">
 
-                <div class="svg-container  w-4 px-2" @click="showPwd">
+                <div class="svg-container  px-2" @click="showPwd">
                   <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
                 </div>
                 <el-input
