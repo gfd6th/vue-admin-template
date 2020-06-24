@@ -29,15 +29,7 @@
           {{ scope.row.subtime | format }}
         </template>
       </el-table-column>
-      <!-- <el-table-column
-        align="center"
-        prop="overtime"
-        label="完成时间"
-      >
-        <template slot-scope="scope">
-          {{ scope.row.overtime | format }}
-        </template>
-      </el-table-column> -->
+
       <el-table-column
         align="center"
         prop="worknum"
@@ -45,15 +37,21 @@
       />
       <el-table-column
         align="center"
+      />
+      <el-table-column
+        align="center"
         label="操作"
       >
-        <template slot-scope="scope">
-          <el-button
-            size="mini"
-            type="text"
-            @click="handleEdit(scope.$index, scope.row)"
-          >查看</el-button>
-        </template>
+        <div slot-scope="scope">
+          <div class="w-1/2 text-right">
+
+            <el-button
+              size="mini"
+              type="text"
+              @click="handleEdit(scope.$index, scope.row)"
+            >查看</el-button>
+          </div>
+        </div>
       </el-table-column>
 
     </el-table>
