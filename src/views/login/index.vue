@@ -3,7 +3,7 @@
     <header class="hidden sm:block bg-white shadow py-6 fixed top-0 w-full z-10">
       <div class=" divide-x-2  container flex items-center">
 
-        <img src="https://ae01.alicdn.com/kf/U3c9dfa07ce5d4b7ba5f0973ed59e8d2bB.jpg" alt="" class="w-56 pr-4">
+        <img src="@/assets/logo@2x.png" alt="" class="w-56 pr-4">
         <!-- <span class="text-xl px-4 font-medium text-gray-700">售后工单系统</span> -->
       </div>
     </header>
@@ -12,7 +12,7 @@
       <div class="md:flex  bg-white rounded overflow-hidden shadow-lg">
 
         <div class="hidden md:block w-11/12">
-          <img src="@/assets/bg.jpg" class="w-full object-cover h-full" alt="">
+          <img src="https://ae01.alicdn.com/kf/U22427f1d4df44f148fe904fc403a00a1d.jpg" class="w-full object-cover h-full" alt="">
         </div>
         <div class="login-container flex h-screen md:h-auto flex-col w-full md:w-4/12">
           <div class="flex-1">
