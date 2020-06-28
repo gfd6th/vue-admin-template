@@ -68,7 +68,7 @@
       </div>
 
     </div>
-    <div class="text-center fixed w-full text-gray-700" style="bottom: 2rem">
+    <div class="text-center fixed w-full text-gray-700 text-sm" style="bottom: 2rem;">
       Copyright 2016-2020 南昌杰锐软件有限公司ALL Rights Reserved | 赣ICP备 16009993 号
     </div>
   </div>

@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <sidebar-item v-for="route in constantRoutes" :key="route.path" :item="route" :base-path="route.path" class="section" />
   </div>
 </template>

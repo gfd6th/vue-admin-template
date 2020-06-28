@@ -2,16 +2,16 @@
   <div v-if="!item.hidden">
     <div v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
       <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
-        <div :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
+        <div :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}" class="text-sm">
           <item :icon="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)" :title="onlyOneChild.meta.title" />
         </div>
       </app-link>
 
     </div>
 
-    <div v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
+    <div v-else ref="subMenu" :index="resolvePath(item.path)">
       <div slot="title">
-        <h3 v-if="item.meta" class="my-3">
+        <h3 v-if="item.meta" class="my-3 text-base">
           {{ item.meta.title }}
         </h3>
         <!-- <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" /> -->
