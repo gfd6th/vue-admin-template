@@ -55,7 +55,7 @@
             <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
           </span> -->
               </el-form-item>
-
+              <el-link href="http://help.chenrysoft.com/#/register" target="_blank" type="primary" :underline="false">注册账号</el-link>
               <div class="mt-8 md:mt-16">
 
                 <el-button :loading="loading" type="primary" style="width:100%" @click.native.prevent="handleLogin">登录</el-button>
@@ -172,6 +172,9 @@ $cursor: #fff;
     height: 47px;
 
     input {
+      &:autofill-selected{
+        background:none !important
+      }
       background: transparent;
       border: 0px;
       -webkit-appearance: none;
