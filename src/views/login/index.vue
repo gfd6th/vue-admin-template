@@ -7,7 +7,7 @@
         <!-- <span class="text-xl px-4 font-medium text-gray-700">售后工单系统</span> -->
       </div>
     </header>
-    <div class="container h-full flex items-center">
+    <div class="container h-full flex items-center ">
 
       <div class="md:flex  bg-white rounded overflow-hidden shadow-lg">
 
@@ -55,22 +55,33 @@
             <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
           </span> -->
               </el-form-item>
-              <el-link href="http://help.chenrysoft.com/#/register" target="_blank" type="primary" :underline="false">注册账号</el-link>
-              <div class="mt-8 md:mt-16">
+              <div class="flex justify-between z-10">
 
+                <el-link href="https://help.chenrysoft.com/#/register" target="_blank" type="primary" :underline="false">注册账号</el-link>
+                <el-link href="https://help.chenrysoft.com/#/forgotpassword" target="_blank" type="primary" :underline="false">忘记密码</el-link>
+              </div>
+              <div class="mt-8 md:mt-16 z-10">
                 <el-button :loading="loading" type="primary" style="width:100%" @click.native.prevent="handleLogin">登录</el-button>
               </div>
 
             </el-form>
           </div>
-          <img src="@/assets/diwen@2x.png" class="w-full md:hidden" alt="">
+          <img src="https://ae01.alicdn.com/kf/U1f9e3854acc84e57a694a99b60af4f45t.jpg" class="w-full md:hidden" alt="">
+
         </div>
+
       </div>
 
     </div>
-    <div class="text-center fixed w-full text-gray-700 text-sm" style="bottom: 2rem;">
-      Copyright 2016-2020 南昌杰锐软件有限公司ALL Rights Reserved | 赣ICP备 16009993 号
+    <div class="text-center fixed  w-full text-gray-700 text-sm z" style="bottom: 2rem;">
+      <div>
+        Copyright 2016-2020 南昌杰锐软件有限公司ALL Rights Reserved
+      </div>
+      <div class="mt-2">
+        赣ICP备 16009993 号
+      </div>
     </div>
+
   </div>
 </template>
 
@@ -165,6 +176,16 @@ $cursor: #fff;
 .login-container {
   .el-form-item__content{
     @apply flex
+  }
+  input:-internal-autofill-selected {
+  box-shadow: inset 0 0 0 500px #fff !important;
+  }
+  .el-input__inner{
+    @apply text-center
+  }
+  .el-form-item__error{
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .el-input {
