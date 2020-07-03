@@ -57,8 +57,8 @@
               </el-form-item>
               <div class="flex justify-between z-10">
 
-                <el-link href="https://help.chenrysoft.com/#/register" target="_blank" type="primary" :underline="false">注册账号</el-link>
-                <el-link href="https://help.chenrysoft.com/#/forgotpassword" target="_blank" type="primary" :underline="false">忘记密码</el-link>
+                <el-link href="http://help.chenrysoft.com/#/register" target="_blank" type="primary" :underline="false">注册账号</el-link>
+                <el-link href="http://help.chenrysoft.com/#/forgotpassword" target="_blank" type="primary" :underline="false">忘记密码</el-link>
               </div>
               <div class="mt-8 md:mt-16 z-10">
                 <el-button :loading="loading" type="primary" style="width:100%" @click.native.prevent="handleLogin">登录</el-button>
