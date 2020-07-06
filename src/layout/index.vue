@@ -7,7 +7,7 @@
     <Right class="absolute-y-center z-10" />
     <Toolbar class="z-10 absolute-x-center" />
 
-    <div style="padding-top: 75px" class="bg-gray-100">
+    <div style="padding-top: 75px" class="bg-gray-100 flex">
 
       <app-main />
 
