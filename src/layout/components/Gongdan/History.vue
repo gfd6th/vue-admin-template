@@ -231,7 +231,7 @@ import moment from 'moment'
 export default {
   filters: {
     format(date) {
-      return moment(date).format('YYYY-MM-DD hh:mm')
+      return moment(date).format('YYYY-MM-DD HH:mm')
     }
   },
   data() {
