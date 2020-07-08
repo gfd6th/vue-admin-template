@@ -25,6 +25,8 @@
     "stats.js": "^0.17.0",
     "tailwindcss": "^1.4.6",
     "three": "^0.117.1",
+    "three-orbit-controls": "^82.1.0",
+    "threestrap": "^0.0.13-dev",
     "vue": "2.6.10",
     "vue-gl": "^0.22.0",
     "vue-router": "3.0.6",
