@@ -11,12 +11,13 @@ import * as THREE from 'three'
 // import OBJLoader from  'three-obj-loader';
 // import { CSS2DRenderer, CSS2DObject } from 'three-css2drender'
 const OrbitControls = require('three-orbit-controls')(THREE)
-
+import Stats from 'stats.js'
+let stats
 export default {
   data() {
     return {
       scene: '',
-
+      showStats: true,
       light: '',
       camera: '',
       renderer: ''
@@ -26,6 +27,14 @@ export default {
   mounted() {
     this.init()
     this.addObj()
+
+    if (this.showStats) {
+      stats = new Stats()
+      stats.domElement.style = 'height:30px; position: absolute; bottom:20px; right:100; '
+
+      // stats.showPanel(1) // 0: fps, 1: ms, 2: mb, 3+: custom
+      document.body.appendChild(stats.dom)
+    }
     this.animate()
   },
   destroyed() {
@@ -87,8 +96,11 @@ export default {
     },
 
     animate() {
+      stats && stats.begin()
       this.render()
       this.light.position.copy(this.camera.position)
+      stats && stats.end()
+
       requestAnimationFrame(this.animate)
     },
     render() {
