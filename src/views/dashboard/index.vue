@@ -11,7 +11,7 @@ import * as THREE from 'three'
 // import OBJLoader from  'three-obj-loader';
 // import { CSS2DRenderer, CSS2DObject } from 'three-css2drender'
 const OrbitControls = require('three-orbit-controls')(THREE)
-var listener
+
 export default {
   data() {
     return {
@@ -19,10 +19,7 @@ export default {
 
       light: '',
       camera: '',
-      controls: '',
-      renderer: '',
-
-      fov: 60
+      renderer: ''
 
     }
   },
@@ -32,56 +29,83 @@ export default {
     this.animate()
   },
   destroyed() {
-    window.removeEventListener(listener)
+    this.renderer.dispose()
+
     console.log('实例已经被销毁')
   },
   methods: {
     init() {
+      const canvas = this.$refs.canvas
+      this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true })
+      // this.renderer.setClearColor(0x889988)
+      const fov = 45
+      const aspect = canvas.clientWidth / canvas.clientHeight // the canvas default
+      const near = 0.1
+      const far = 5000
+      this.camera = new THREE.PerspectiveCamera(fov, aspect, near, far)
+      this.camera.position.set(100, 500, 1000)
       this.scene = new THREE.Scene()
-      this.scene.add(new THREE.AmbientLight(0x999999))// 环境光
-      this.light = new THREE.DirectionalLight(0xdfebff, 0.45)// 从正上方（不是位置）照射过来的平行光，0.45的强度
-      this.light.position.set(50, 200, 100)
-      this.light.position.multiplyScalar(0.3)
+      this.light = new THREE.PointLight(0xffffff, 0.8)
       this.scene.add(this.light)
-      // 初始化相机
-      const canvas = this.$refs.canvas
-      this.camera = new THREE.PerspectiveCamera(this.fov, canvas.clientWidth / canvas.clientHeight, 1, 1000)
-      this.camera.position.set(10, 90, 65)
-      this.camera.lookAt(this.scene.position)
-      // 初始化控制器
-      this.controls = new OrbitControls(this.camera)
-      this.controls.target.set(0, 0, 0)
-      this.controls.minDistance = 80
-      this.controls.maxDistance = 400
-      this.controls.maxPolarAngle = Math.PI / 3
-      this.controls.update()
-      // 渲染
-      this.renderer = new THREE.WebGLRenderer({
-
-        antialias: true
-      })// 会在body里面生成一个canvas标签,
+      this.makeAmebientLight()
+      this.makeController(this.camera, canvas)
       this.renderer.setPixelRatio(window.devicePixelRatio)// 为了兼容高清屏幕
-
-      this.renderer.setSize(canvas.clientWidth, canvas.clientHeight)
-
-      listener = window.addEventListener('resize', this.onWindowResize, false)// 添加窗口监听事件（resize-onresize即窗口或框架被重新调整大小）
     },
-    onWindowResize() {
-      const canvas = this.$refs.canvas
-
-      this.camera.aspect = canvas.clientWidth / canvas.clientHeight
-      this.camera.updateProjectionMatrix()
-      this.renderer.setSize(canvas.clientWidth, canvas.clientHeight)
+    makeAmebientLight() {
+      // scene.fog = new THREE.Fog(0xffffff, 1000,0.001);//雾化效果
+      const light = new THREE.AmbientLight(0x444444, 1.5)
+      this.scene.add(light)
     },
+    makeController(camera, canvas) {
+      const controls = new OrbitControls(camera, canvas)
+      // 如果使用animate方法时，将此函数删除
+      // controls.addEventListener( 'change', render );
+      // 使动画循环使用时阻尼或自转 意思是否有惯性
+      controls.enableDamping = true
+      // 动态阻尼系数 就是鼠标拖拽旋转灵敏度
+      // controls.dampingFactor = 0.25;
+      // 是否可以缩放
+      controls.enableZoom = true
+      // 是否自动旋转
+      controls.autoRotate = false
+      // 设置相机距离原点的最远距离
+      controls.minDistance = 0.1
+      // 设置相机距离原点的最远距离
+      controls.maxDistance = 2000
+      // 是否开启右键拖拽
+      controls.enablePan = true
+    },
+    resizeRendererToDisplaySize(renderer) {
+      const canvas = renderer.domElement
+      const width = canvas.clientWidth
+      const height = canvas.clientHeight - 75
+      const needResize = canvas.width !== width || canvas.height !== height
+      if (needResize) {
+        renderer.setSize(width, height, false)
+      }
+      return needResize
+    },
+
     animate() {
-      requestAnimationFrame(this.animate)
       this.render()
+      this.light.position.copy(this.camera.position)
+      requestAnimationFrame(this.animate)
     },
     render() {
+      if (this.resizeRendererToDisplaySize(this.renderer)) {
+        const canvas = this.renderer.domElement
+        this.camera.aspect = canvas.clientWidth / canvas.clientHeight
+        this.camera.updateProjectionMatrix()
+      }
       this.renderer.render(this.scene, this.camera)
     },
     addObj() {
+      const geometry = new THREE.BoxGeometry(100, 100, 100)
 
+      const material = new THREE.MeshPhongMaterial({ color: 0xff0000 })
+
+      const cube = new THREE.Mesh(geometry, material)
+      this.scene.add(cube)
     }
 
   }
