@@ -59,10 +59,12 @@ export default {
       if (val) {
         // console.log(val)
         this.transformControls.attach(val)
+
         // this.$refs.canvas.removeEventListener('mousedown', this.onDocumentMouseMove, false)
         // val.userData.size =
         // this.outlinePass.selectedObjects = val
       } else {
+        // this.transformControls.attach(val)
         this.transformControls.detach()
       }
     }
@@ -155,6 +157,8 @@ export default {
       this.raycaster.setFromCamera(mouse, this.camera)
 
       var intersects = this.raycaster.intersectObjects(this.models, true)
+      // var intersects = this.raycaster.intersectObjects(this.scene.children, true)
+
       const getModel = (intersect) => {
         if (intersect.parent.type !== 'Scene') {
           return getModel(intersect.parent)
@@ -166,14 +170,20 @@ export default {
       if (intersects.length > 0) {
         // console.log(intersects[0].object, mouse, this.scene.children)
         const model = getModel(intersects[0].object)
-        console.log(model)
-        if (this.intersect !== model) {
-          this.intersect = model
+        console.log(model,)
+        // if (model.type !== 'Mesh' && model.type !== 'Group') {
+        //   return
+        // }
+        if (model.type !== '') {
+          if (this.intersect !== model) {
+            this.intersect = model
+          }
         }
       } else {
         // if (this.intersect) this.intersect.material.emissive.setHex(this.intersect.currentHex)
 
         this.intersect = null
+        // this.transformControls.enabled = false
       }
 
       // }
@@ -194,12 +204,22 @@ export default {
 
     makeTransformControl() {
       this.transformControls = new TransformControls(this.camera, this.renderer.domElement)
+
       this.transformControls.addEventListener('change', this.render)
 
       this.transformControls.addEventListener('dragging-changed', (event) => {
         console.log('changed', event)
         // this.dragging = false
         this.orbit.enabled = !event.value
+      })
+
+      this.transformControls.addEventListener('mouseDown', (e) => {
+        // console.log('22')
+        this.$refs.canvas.removeEventListener('mousedown', this.onDocumentMouseMove, false)
+      })
+      this.transformControls.addEventListener('mouseUp', (e) => {
+        // console.log('33')
+        this.$refs.canvas.addEventListener('mousedown', this.onDocumentMouseMove, false)
       })
     },
     makeStats() {
@@ -286,6 +306,15 @@ export default {
       this.models.push(cube)
       // this.transformControls && this.transformControls.attach(cube)
       this.scene.add(cube)
+
+      const geometry2 = new THREE.BoxGeometry(100, 100, 100)
+
+      const cube2 = new THREE.Mesh(geometry2, material)
+      cube2.position.x = 300
+      // cube.userData.currentPosition = new THREE.Vector3()
+      this.models.push(cube2)
+      // this.transformControls && this.transformControls.attach(cube)
+      this.scene.add(cube2)
     }
 
   }
