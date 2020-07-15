@@ -5,11 +5,17 @@
 
       <el-button @click="load">加载模型</el-button>
 
+      <el-button @click="save">保存</el-button>
       <div v-if="intersect">
         <el-button @click="enableScale">放大/缩小</el-button>
         <el-button @click="enableTranslate">移动</el-button>
+        <div>
+
+          <el-button @click="loadMat">加载材质</el-button>
+          <el-button @click="remove">删除模型</el-button>
+
+        </div>
       </div>
-      <el-button v-if="intersect" @click="loadMat">加载材质</el-button>
     </div>
     <canvas id="c" ref="canvas" class="block  h-full w-full" />
   </div>
@@ -60,14 +66,8 @@ export default {
   watch: {
     intersect(val) {
       if (val) {
-        // console.log(val)
         this.transformControls.attach(val)
-
-        // this.$refs.canvas.removeEventListener('mousedown', this.onDocumentMouseMove, false)
-        // val.userData.size =
-        // this.outlinePass.selectedObjects = val
       } else {
-        // this.transformControls.attach(val)
         this.transformControls.detach()
       }
     }
@@ -80,20 +80,26 @@ export default {
     this.addObj()
     this.makeStats()
 
-    // var container = new UIPanel()
-    // 	container.setId('viewport')
-    // container.setPosition('absolute')
-    // console.log(container)
     helper = new ViewHelper(this.camera, this.$refs.workspace)
     this.transformControls && this.scene.add(this.transformControls)
     this.animate()
   },
-  destroyed() {
-    this.$refs.canvas && this.$refs.canvas.removeEventListener('mousedown', this.onDocumentMouseMove)
+  beforeDestroy() {
+    this.$refs.canvas.removeEventListener('mousedown', this.onDocumentMouseMove)
     this.renderer.dispose()
+  },
+  destroyed() {
     console.log('实例已经被销毁')
   },
   methods: {
+    save() {
+      console.log('save')
+    },
+    remove() {
+      console.log('remove')
+      this.scene.remove(this.intersect)
+      this.intersect = null
+    },
     init() {
       const canvas = this.$refs.canvas
       this.width = window.innerWidth
@@ -192,6 +198,7 @@ export default {
         // object.userData.currentPosition = new THREE.Vector3()
         // const mesh = new THREE.Mesh(object)
         this.scene.add(object)
+        this.intersect = object
         this.transformControls.attach(object)
         this.models.push(object)
       })
