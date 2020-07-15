@@ -29,10 +29,12 @@ import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js'
 // import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js'
 // import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js'
 
+import { ViewHelper } from '@/libs/Viewport.ViewHelper'
 import Stats from 'stats.js'
 let stats
 var mouse = new THREE.Vector2()
-
+let helper
+var clock = new THREE.Clock() // only used for animations
 export default {
   data() {
     return {
@@ -51,6 +53,7 @@ export default {
       outlinePass: null,
       composer: null,
       models: []
+      // helper: null
 
     }
   },
@@ -77,6 +80,11 @@ export default {
     this.addObj()
     this.makeStats()
 
+    // var container = new UIPanel()
+    // 	container.setId('viewport')
+    // container.setPosition('absolute')
+    // console.log(container)
+    helper = new ViewHelper(this.camera, this.$refs.workspace)
     this.transformControls && this.scene.add(this.transformControls)
     this.animate()
   },
@@ -97,25 +105,12 @@ export default {
       const near = 0.1
       const far = 5000
       this.camera = new THREE.PerspectiveCamera(fov, aspect, near, far)
-      this.camera.position.set(100, 500, 1000)
+      this.camera.position.set(1, 5, 10)
       this.scene = new THREE.Scene()
       this.light = new THREE.PointLight(0xffffff, 0.8)
       this.scene.add(this.light)
       this.makeAmebientLight()
       this.renderer.setPixelRatio(window.devicePixelRatio)// 为了兼容高清屏幕
-
-      // this.composer = new EffectComposer(this.renderer)
-
-      // var renderPass = new RenderPass(this.scene, this.camera)
-      // this.composer.addPass(renderPass)
-
-      // this.outlinePass = new OutlinePass(new THREE.Vector2(window.innerWidth, window.innerHeight - 75), this.scene, this.camera)
-      // this.outlinePass.edgeStrength = 10
-
-      // this.composer.addPass(this.outlinePass)
-      // // const effectFXAA = new ShaderPass(FXAAShader)
-      // // effectFXAA.uniforms[ 'resolution' ].value.set(1 / window.innerWidth, 1 / (window.innerHeight - 75))
-      // // this.composer.addPass(effectFXAA)
 
       canvas.addEventListener('mousedown', this.onDocumentMouseMove, false)
     },
@@ -289,15 +284,27 @@ export default {
       if (this.resizeRendererToDisplaySize(this.renderer)) {
         const canvas = this.renderer.domElement
         console.log(canvas)
+        helper.updatePosition()
         this.camera.aspect = canvas.clientWidth / canvas.clientHeight
         this.camera.updateProjectionMatrix()
       }
+      // console.log(this.renderer.get)
+      var delta = clock.getDelta()
+      if (helper.animating === true) {
+        helper.update(delta)
+        // needsUpdate = true;
+      }
+      // helper.controls = this.orbit
 
+      this.renderer.setViewport(0, 0, this.$refs.canvas.offsetWidth, this.$refs.canvas.offsetHeight)
       this.renderer.render(this.scene, this.camera)
+      this.renderer.autoClear = false
+      helper.render(this.renderer)
+      this.renderer.autoClear = true
     },
 
     addObj() {
-      const geometry = new THREE.BoxGeometry(100, 100, 100)
+      const geometry = new THREE.BoxGeometry(1, 1, 1)
 
       const material = new THREE.MeshPhongMaterial({ color: 0xff0000 })
 
@@ -307,10 +314,10 @@ export default {
       // this.transformControls && this.transformControls.attach(cube)
       this.scene.add(cube)
 
-      const geometry2 = new THREE.BoxGeometry(100, 100, 100)
+      const geometry2 = new THREE.BoxGeometry(1, 1, 1)
 
       const cube2 = new THREE.Mesh(geometry2, material)
-      cube2.position.x = 300
+      cube2.position.x = 3
       // cube.userData.currentPosition = new THREE.Vector3()
       this.models.push(cube2)
       // this.transformControls && this.transformControls.attach(cube)
