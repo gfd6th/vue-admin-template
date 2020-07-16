@@ -29,6 +29,7 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js'
+import { OBJExporter } from 'three/examples/jsm/exporters/OBJExporter.js'
 // import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
 // import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
 // import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js'
@@ -98,6 +99,7 @@ export default {
     remove() {
       console.log('remove')
       this.scene.remove(this.intersect)
+      this.models = this.models.filter(model => this.intersect.uuid !== model.uuid)
       this.intersect = null
     },
     init() {
