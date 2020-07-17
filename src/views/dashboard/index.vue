@@ -29,7 +29,13 @@
           </div>
           <!-- <el-button @click="scaleUpMat">放大材质</el-button> -->
           <!-- <el-button @click="scaleDownMat">缩小材质</el-button> -->
-          <!-- <el-slider v-model="value3" :show-tooltip="false">旋转材质</el-slider> -->
+          <div class="flex items-center">
+            <div>
+
+              旋转材质
+            </div>
+            <el-slider v-model="deg" :min="-360" :max="360" :show-tooltip="false" class="mx-2 flex-1" @input="rotate" />
+          </div>
           <el-button @click="remove">删除模型</el-button>
 
         </div>
@@ -73,7 +79,8 @@ export default {
       outlinePass: null,
       composer: null,
       models: [],
-      scale: 1
+      scale: 1,
+      deg: 0
       // tracker: new ResourceTracker()
 
       // helper: null
@@ -117,26 +124,16 @@ export default {
         this.intersect.material.map.repeat.y = val
       }
     },
-    rotateMat() {
-
+    rotate(val) {
+      if (this.intersect.material && this.intersect.material.map) {
+        this.intersect.material.map.rotation = THREE.MathUtils.degToRad(val)
+        // this.intersect.material.map.repeat.y = val
+      }
     },
     loadScene() {
 
     },
-    scaleUpMat() {
-      if (this.intersect.material && this.intersect.material.map) {
-        this.scale = this.scale.multiplyScalar(0.9)
-        this.intersect.material.map.repeat = this.scale
-        // this.intersect.material.needsUpdate = true
-      }
-    },
-    scaleDownMat() {
-      if (this.intersect.material && this.intersect.material.map) {
-        this.scale = this.scale.multiplyScalar(1.1)
-        this.intersect.material.map.repeat = this.scale
-        // this.intersect.material.needsUpdate = true
-      }
-    },
+
     removeMat() {
       // this.intersect.ma
       console.log('remmat')
