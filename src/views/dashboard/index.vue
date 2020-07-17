@@ -12,6 +12,8 @@
         <div>
 
           <el-button @click="loadMat">加载材质</el-button>
+          <el-button @click="removeMat">清空材质</el-button>
+
           <el-button @click="remove">删除模型</el-button>
 
         </div>
@@ -91,6 +93,20 @@ export default {
     loadScene() {
 
     },
+    removeMat() {
+      // this.intersect.ma
+      const remMat = (mesh) => {
+        if (mesh.children.length > 0) {
+          mesh.children.forEach((i) => {
+            remMat(i)
+          })
+        } else {
+          mesh.material.dispose()
+          // mesh.material.needsUpdate = true
+        }
+      }
+      remMat(this.intersect)
+    },
     save() {
       console.log('save')
       var exporter = new GLTFExporter()
@@ -151,9 +167,18 @@ export default {
       }
     },
     remove() {
+      // const remGeo = (mesh) => {
+
+      // }
       console.log('remove')
-      this.scene.remove(this.intersect)
+
+      this.intersect.traverse((obj) => {
+        obj.type === 'Mesh' && obj.geometry.dispose()
+      }
+      )
+      this.removeMat()
       this.models = this.models.filter(model => this.intersect.uuid !== model.uuid)
+      this.scene.remove(this.intersect)
       this.intersect = null
     },
     init() {
@@ -238,6 +263,7 @@ export default {
         // }
         if (model.type !== '') {
           if (this.intersect !== model) {
+            // TODO 优化点击， 旋转相机的时候， 保持transform坐标
             this.intersect = model
           }
         }
