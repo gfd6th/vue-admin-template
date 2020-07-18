@@ -4,7 +4,7 @@
     <div class="fixed top-0 left-0 z-10">
 
       <el-button @click="load">加载模型</el-button>
-      <el-button @click="loadScene">加载场景</el-button>
+      <!-- <el-button @click="loadScene">加载场景</el-button> -->
       <el-button @click="save">保存场景</el-button>
       <div v-if="intersect">
         <el-button @click="enableScale">放大/缩小</el-button>
@@ -119,16 +119,20 @@ export default {
   methods: {
     changeScale(val) {
       console.log(val)
-      if (this.intersect.material && this.intersect.material.map) {
-        this.intersect.material.map.repeat.x = val
-        this.intersect.material.map.repeat.y = val
-      }
+      this.intersect.traverse((obj) => {
+        if (obj.material && obj.material.map) {
+          obj.material.map.repeat.x = val
+          obj.material.map.repeat.y = val
+        }
+      })
     },
     rotate(val) {
-      if (this.intersect.material && this.intersect.material.map) {
-        this.intersect.material.map.rotation = THREE.MathUtils.degToRad(val)
+      this.intersect.traverse((obj) => {
+        if (obj.material && obj.material.map) {
+          obj.material.map.rotation = THREE.MathUtils.degToRad(val)
         // this.intersect.material.map.repeat.y = val
-      }
+        }
+      })
     },
     loadScene() {
 
@@ -137,16 +141,18 @@ export default {
     removeMat() {
       // this.intersect.ma
       console.log('remmat')
-      if (this.intersect.material && this.intersect.material.map) {
-        this.intersect.material.map.dispose()
-        this.intersect.material.map = null
-      }
 
-      if (this.intersect.material) {
-        this.intersect.material.needsUpdate = true
+      this.intersect.traverse((obj) => {
+        if (obj.material && obj.material.map) {
+          obj.material.map.dispose()
+          obj.material.map = null
+        }
+        if (obj.material) {
+          obj.material.needsUpdate = true
 
-        this.intersect.material.dispose()
-      }
+          obj.material.dispose()
+        }
+      })
       // this.intersect.material = null
     },
     save() {
