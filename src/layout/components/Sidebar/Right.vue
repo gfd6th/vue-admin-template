@@ -4,8 +4,27 @@
     <div class="bg-white   h-full rounded p-2 shadow">
 
       <h4>
-        户型库
+        {{ title }}
       </h4>
     </div>
   </div>
 </template>
+
+<script>
+import { mapGetters, mapActions, mapState } from 'vuex'
+
+export default {
+  data() {
+    return {
+
+    }
+  },
+  computed: {
+    ...mapGetters('workspace', ['editing']),
+    title() {
+      return this.editing.title
+    }
+  }
+
+}
+</script>

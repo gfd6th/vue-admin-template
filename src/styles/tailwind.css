@@ -8,9 +8,10 @@
   border-color: theme('borderColor.base', currentColor);
 }
 
-* {
+/* * {
   color: theme('textColor.primary')
-}
+} */
+
 
 .absolute-y-center {
   top: 50%;

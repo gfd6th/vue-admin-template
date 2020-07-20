@@ -6,6 +6,8 @@ import permission from './modules/permission'
 import settings from './modules/settings'
 import user from './modules/user'
 import workspace from './modules/workspace'
+import subsidebar from './modules/subsidebar'
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -14,7 +16,8 @@ const store = new Vuex.Store({
     permission,
     settings,
     user,
-    workspace
+    workspace,
+    subsidebar
   },
   getters
 })

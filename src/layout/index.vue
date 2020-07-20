@@ -4,7 +4,7 @@
     <Navbar class="fixed top-0 w-full bg-white" style="height:75px" />
 
     <Sidebar class="absolute-y-center z-10" />
-    <Right id="right-sidebar" class="absolute-y-center z-10" />
+    <Right v-if="showRight" id="right-sidebar" class="absolute-y-center z-10" />
     <Toolbar class="z-10 absolute-x-center" />
 
     <div style="padding-top: 75px" class="bg-gray-100 flex">
@@ -38,8 +38,10 @@ export default {
     },
     fixedHeader() {
       return this.$store.state.settings.fixedHeader
+    },
+    showRight() {
+      return this.$store.state.workspace.editing
     }
-
   },
   methods: {
     handleClickOutside() {

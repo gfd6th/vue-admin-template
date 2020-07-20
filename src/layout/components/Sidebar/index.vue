@@ -25,7 +25,7 @@
           几何库
         </div>
       </div> -->
-      <div v-for="item in left_menu" :key="item.name" class="item text-center p-3 cursor-pointer" :class="{active: active === item.title}" @click="handleClickMenu(item)">
+      <div v-for="item in left_menu" :key="item.name" class="item text-center p-3 cursor-pointer" :class="{active: active === item}" @click="handleClickMenu(item)">
         <div class="icon">
 
           <svg-icon :icon-class="item.icon || 'password'" />
@@ -35,12 +35,13 @@
         </div>
       </div>
     </div>
-    <SubSidebar />
+    <SubSidebar v-if="active" />
   </div>
 </template>
 
 <script>
 import SubSidebar from './SubSidebar'
+
 import { mapGetters, mapActions, mapState } from 'vuex'
 export default {
   components: { SubSidebar },
@@ -61,15 +62,13 @@ export default {
 
 <style lang="scss" scoped>
   .item{
-    &.active{
+    &.active, &:hover{
       @apply bg-primary;
       .icon, div{
         @apply text-white
       }
     }
- &:hover{
 
-  }
   }
 
 </style>

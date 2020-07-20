@@ -4,7 +4,7 @@
 //   getInfo
 // } from '@/api/user'
 
-import { load } from '@/api/workspace'
+// import { load } from '@/api/workspace'
 
 const menu = [{
   title: '素材库',
@@ -25,26 +25,36 @@ const menu = [{
 ]
 
 const state = {
-  active: '素材库',
+  active: null,
   menu,
-  lists: []
-
+  editing: null
 }
 
 const mutations = {
-  CHANGE_TAB(state, name) {
-    state.active = name
+  CHANGE_TAB(state, tab) {
+    state.active = tab
   },
-  SET_LISTS(state, lists) {
-    state.lists = lists
+  CHANGE_EDITING(state, obj) {
+    state.editing = obj
   }
+
 }
 
 const actions = {
-  async select({ commit }, tab) {
-    commit('CHANGE_TAB', tab.title)
-    const lists = await load(tab.name)
-    commit('SET_LISTS', lists)
+  select({ commit }, tab) {
+    commit('CHANGE_TAB', tab)
+  },
+  edit({
+    commit
+  }, obj) {
+    commit('CHANGE_EDITING', obj)
+  }
+
+}
+
+const getters = {
+  editing() {
+    return state.editing
   }
 }
 
@@ -52,5 +62,6 @@ export default {
   namespaced: true,
   state,
   mutations,
+  getters,
   actions
 }
