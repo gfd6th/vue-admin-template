@@ -40,7 +40,7 @@ export default {
       return this.$store.state.settings.fixedHeader
     },
     showRight() {
-      return this.$store.state.workspace.editing
+      return this.$store.state.workspace.editing || this.$store.state.workspace.intersect
     }
   },
   methods: {

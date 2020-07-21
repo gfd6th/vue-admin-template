@@ -72,6 +72,9 @@ const getters = {
   },
   items() {
     return state.items
+  },
+  material() {
+    return state.material
   }
 }
 

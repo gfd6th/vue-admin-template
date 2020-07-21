@@ -70,7 +70,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('subsidebar', ['categories', 'items']),
+    ...mapGetters('subsidebar', ['categories', 'items', 'material']),
     tab() {
       return this.$store.state.workspace.active
     },
@@ -100,14 +100,15 @@ export default {
 
   methods: {
     ...mapActions('subsidebar', ['loadSubSidebar', 'loadMaterial', 'setObj']),
-    ...mapActions('workspace', ['edit']),
+    ...mapActions('workspace', ['edit', 'addModelToScene']),
     setScrollerHeight() {
       this.height = document.getElementById('sub-container').clientHeight - this.$refs.upper.clientHeight - 64
     },
     async getMaterial(item) {
       await this.loadMaterial(item.id)
       this.materialId = item.id
-      this.edit(this.$store.state.subsidebar.material)
+      this.edit(this.material)
+      this.addModelToScene(this.material.three)
     }
   }
 }

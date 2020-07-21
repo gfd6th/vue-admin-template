@@ -61,10 +61,11 @@ let stats
 var mouse = new THREE.Vector2()
 let helper
 var clock = new THREE.Clock() // only used for animations
+import { mapActions, mapGetters, mapState } from 'vuex'
 export default {
   data() {
     return {
-      scene: '',
+      // scene: '',
       width: 0,
       height: 0,
       showStats: true,
@@ -73,12 +74,11 @@ export default {
       light: '',
       camera: '',
       renderer: '',
-      transformControls: null,
-      intersect: null,
+      // transformControls: null,
+      // intersect: null,
       raycaster: new THREE.Raycaster(),
-      outlinePass: null,
       composer: null,
-      models: [],
+      // models: [],
       scale: 1,
       deg: 0
       // tracker: new ResourceTracker()
@@ -86,6 +86,42 @@ export default {
       // helper: null
 
     }
+  },
+  computed: {
+    // ...mapState('workspace', ['models']),
+    scene: {
+      get() {
+        return this.$store.state.workspace.scene
+      },
+      set(scene) {
+        this.setScene(scene)
+      }
+    },
+    models: {
+      get() {
+        return this.$store.state.workspace.models
+      },
+      set(models) {
+        this.setModels(models)
+      }
+    },
+    intersect: {
+      get() {
+        return this.$store.state.workspace.intersect
+      },
+      set(intersect) {
+        this.setIntersect(intersect)
+      }
+    },
+    transformControls: {
+      get() {
+        return this.$store.state.workspace.transformControls
+      },
+      set(control) {
+        this.setControl(control)
+      }
+    }
+
   },
   watch: {
     intersect(val) {
@@ -102,10 +138,10 @@ export default {
     this.makeTransformControl()
     this.makeController()
 
-    this.addObj()
+    // this.addObj()
     this.makeStats()
 
-    helper = new ViewHelper(this.camera, this.$refs.workspace)
+    // helper = new ViewHelper(this.camera, this.$refs.workspace)
     this.transformControls && this.scene.add(this.transformControls)
     this.animate()
   },
@@ -117,6 +153,7 @@ export default {
     console.log('实例已经被销毁')
   },
   methods: {
+    ...mapActions('workspace', ['setScene', 'edit', 'setModels', 'setIntersect', 'setControl']),
     changeScale(val) {
       console.log(val)
       this.intersect.traverse((obj) => {
@@ -432,22 +469,22 @@ export default {
       if (this.resizeRendererToDisplaySize(this.renderer)) {
         const canvas = this.renderer.domElement
         console.log(canvas)
-        helper.updatePosition()
+        // helper.updatePosition()
         this.camera.aspect = canvas.clientWidth / canvas.clientHeight
         this.camera.updateProjectionMatrix()
       }
       // console.log(this.renderer.get)
       var delta = clock.getDelta()
-      if (helper.animating === true) {
-        helper.update(delta)
-        // needsUpdate = true;
-      }
+      // if (helper.animating === true) {
+      //   helper.update(delta)
+      //   // needsUpdate = true;
+      // }
       // helper.controls = this.orbit
 
       this.renderer.setViewport(0, 0, this.$refs.canvas.offsetWidth, this.$refs.canvas.offsetHeight)
       this.renderer.render(this.scene, this.camera)
       this.renderer.autoClear = false
-      helper.render(this.renderer)
+      // helper.render(this.renderer)
       this.renderer.autoClear = true
     },
 
@@ -457,18 +494,14 @@ export default {
       const material = new THREE.MeshStandardMaterial({ color: 0xff0000 })
 
       const cube = new THREE.Mesh(geometry, material)
-      // cube.userData.currentPosition = new THREE.Vector3()
       this.models.push(cube)
-      // this.transformControls && this.transformControls.attach(cube)
       this.scene.add(cube)
 
       const geometry2 = new THREE.BoxGeometry(1, 1, 1)
 
       const cube2 = new THREE.Mesh(geometry2, material)
       cube2.position.x = 3
-      // cube.userData.currentPosition = new THREE.Vector3()
       this.models.push(cube2)
-      // this.transformControls && this.transformControls.attach(cube)
       this.scene.add(cube2)
     }
 
