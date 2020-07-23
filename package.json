@@ -26,6 +26,8 @@
     "three": "^0.117.1",
     "three-orbit-controls": "^82.1.0",
     "vue": "2.6.10",
+    "vue-base64-upload": "^1.0.1",
+    "vue-image-base64": "^0.1.0",
     "vue-router": "3.0.6",
     "vue2-perfect-scrollbar": "^1.5.0",
     "vuex": "3.1.0"

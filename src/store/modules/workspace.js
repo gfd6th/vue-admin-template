@@ -6,7 +6,6 @@
 
 // import { load } from '@/api/workspace'
 import * as THREE from 'three'
-var loader = new THREE.ObjectLoader()
 
 const menu = [{
   title: '素材库',
@@ -74,13 +73,27 @@ const actions = {
     commit('SET_SCENE', scene)
   },
   addModelToScene({ commit, state }, model) {
-    var loader = new THREE.BufferGeometryLoader()
-    var result = loader.parse(model)
+    const type = model.metadata.type
+    let loader = null
+    switch (type) {
+      case 'BufferGeometry':
+        loader = new THREE.BufferGeometryLoader()
+        var result = loader.parse(model)
+        result = new THREE.Mesh(result)
+        break
+      case 'Object':
+        loader = new THREE.ObjectLoader()
+        var result = loader.parse(model)
 
-    var mesh = new THREE.Mesh(result)
-    commit('SET_INTERSECT', mesh)
-    commit('ADD_MODEL', mesh)
-    commit('SET_SCENE', state.scene.add(mesh))
+        break
+      default:
+        console.error(`${type} not exists`)
+        break
+    }
+
+    commit('SET_INTERSECT', result)
+    commit('ADD_MODEL', result)
+    commit('SET_SCENE', state.scene.add(result))
   },
   setModels({ commit }, models) {
     commit('SET_MODELS', models)
@@ -102,6 +115,9 @@ const getters = {
   },
   intersect() {
     return state.intersect
+  },
+  models() {
+    return state.models
   }
 }
 

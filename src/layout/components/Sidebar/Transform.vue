@@ -16,23 +16,36 @@
 
 <script>
 import { mapGetters, mapActions, mapState } from 'vuex'
-
 export default {
   data() {
     return {
-      active: 'translate'
+      active: this.$store.state.workspace.transformControls.mode
     }
   },
   computed: {
+    // ...mapGetters('workspace', {
+    //   active: 'transformMode'
+    // }),
     transform() {
       return this.$store.state.workspace.transformControls
     }
+
+  },
+  watch: {
+    active(val) {
+      this.transform.setMode(val)
+    }
   },
   methods: {
+    ...mapActions('workspace', ['setControl']),
     changeTransform(type) {
       this.active = type
-      this.transform.setMode(type)
+
+      // this.transform.mode = type
+      // console.log(2)
+      // this.setControl(this.transform)
     }
+
   }
 
 }

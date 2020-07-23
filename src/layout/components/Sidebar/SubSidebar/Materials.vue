@@ -34,7 +34,6 @@
 
     <PerfectScrollbar
       ref="scroller"
-
       class="list-none px-0 flex flex-wrap overflow-auto relative"
       tag="ul"
       :style="{height: height + 'px'}"
@@ -90,9 +89,12 @@ export default {
     this.setScrollerHeight()
 
     window.addEventListener('resize', this.setScrollerHeight)
-    this.$once('hook:beforeDestory', () => {
-      window.removeEventListener('resize', this.setScrollerHeight)
-    })
+    // this.$once('hook:beforeDestory', () => {
+    //   console.log(123)
+    // })
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.setScrollerHeight)
   },
   destroyed() {
     console.log('destory mat')

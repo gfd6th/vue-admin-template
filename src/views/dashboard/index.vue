@@ -7,11 +7,11 @@
       <!-- <el-button @click="loadScene">加载场景</el-button> -->
       <el-button @click="save">保存场景</el-button>
       <div v-if="intersect">
-        <el-button @click="enableScale">放大/缩小</el-button>
-        <el-button @click="enableTranslate">移动</el-button>
+        <!-- <el-button @click="enableScale">放大/缩小</el-button>
+        <el-button @click="enableTranslate">移动</el-button> -->
         <div>
 
-          <el-button @click="loadMat">加载材质</el-button>
+          <!-- <el-button @click="loadMat">加载材质</el-button>
           <el-button @click="removeMat">清空材质</el-button>
           <div class="flex items-center">
             <div>
@@ -26,22 +26,24 @@
 
               放大材质
             </div>
-          </div>
+          </div> -->
           <!-- <el-button @click="scaleUpMat">放大材质</el-button> -->
           <!-- <el-button @click="scaleDownMat">缩小材质</el-button> -->
-          <div class="flex items-center">
+          <!-- <div class="flex items-center">
             <div>
 
               旋转材质
             </div>
             <el-slider v-model="deg" :min="-360" :max="360" :show-tooltip="false" class="mx-2 flex-1" @input="rotate" />
-          </div>
-          <el-button @click="remove">删除模型</el-button>
+          </div> -->
+          <!-- <el-button @click="remove">删除模型</el-button> -->
 
         </div>
       </div>
     </div>
     <canvas id="c" ref="canvas" class="block  h-full w-full" />
+    <!-- <canvas class="block  h-full w-full" /> -->
+
   </div>
 </template>
 <script>
@@ -468,7 +470,7 @@ export default {
     render() {
       if (this.resizeRendererToDisplaySize(this.renderer)) {
         const canvas = this.renderer.domElement
-        console.log(canvas)
+        // console.log(canvas)
         // helper.updatePosition()
         this.camera.aspect = canvas.clientWidth / canvas.clientHeight
         this.camera.updateProjectionMatrix()
