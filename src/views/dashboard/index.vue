@@ -3,7 +3,7 @@
   <div ref="workspace" class="workspace h-full">
     <div class="fixed top-0 left-0 z-10">
 
-      <el-button @click="load">加载模型</el-button>
+      <!-- <el-button @click="load">加载模型</el-button> -->
       <!-- <el-button @click="loadScene">加载场景</el-button> -->
       <el-button @click="save">保存场景</el-button>
       <div v-if="intersect">
@@ -120,6 +120,7 @@ export default {
         return this.$store.state.workspace.transformControls
       },
       set(control) {
+        console.log(22)
         this.setControl(control)
       }
     }
@@ -399,8 +400,9 @@ export default {
         // console.log('22')
         this.$refs.canvas.removeEventListener('mousedown', this.onDocumentMouseMove, false)
       })
+      console.log(this.transformControls)
       this.transformControls.addEventListener('mouseUp', (e) => {
-        // console.log('33')
+        console.log('33')
         this.$refs.canvas.addEventListener('mousedown', this.onDocumentMouseMove, false)
       })
     },

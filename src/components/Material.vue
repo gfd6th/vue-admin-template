@@ -42,21 +42,45 @@
     <div v-if="attrs.indexOf('alphaMap') > -1">
 
       alphaMap:
-      <!-- <img-picker v-model="material.alphaMap" @onChange="updateMaterial" /> -->
+      <img-picker :material="material" type="alphaMap" @onChange="updateMaterial" />
 
     </div>
-    <div v-if="attrs.indexOf('bumpMap') > -1"> bumpMap</div>
-    <div v-if="attrs.indexOf('normalMap') > -1"> normalMap</div>
-    <div v-if="attrs.indexOf('clearcoatNormalMap') > -1"> clearcoatNormalMap</div>
-    <div v-if="attrs.indexOf('displacementMap') > -1"> displacementMap</div>
-    <div v-if="attrs.indexOf('roughnessMap') > -1"> roughnessMap</div>
-    <div v-if="attrs.indexOf('metalnessMap') > -1"> metalnessMap</div>
-    <div v-if="attrs.indexOf('specularMap') > -1"> specularMap</div>
-    <div v-if="attrs.indexOf('envMap') > -1"> envMap</div>
-    <div v-if="attrs.indexOf('lightMap') > -1"> lightMap</div>
-    <div v-if="attrs.indexOf('aoMap') > -1"> aoMap</div>
-    <div v-if="attrs.indexOf('emissiveMap') > -1"> emissiveMap</div>
-    <div v-if="attrs.indexOf('gradientMap') > -1"> gradientMap</div>
+    <div v-if="attrs.indexOf('bumpMap') > -1"> bumpMap:       <img-picker :material="material" type="bumpMap" @onChange="updateMaterial" />
+    </div>
+    <div v-if="attrs.indexOf('normalMap') > -1"> normalMap       <img-picker :material="material" type="normalMap" @onChange="updateMaterial" />
+    </div>
+    <div v-if="attrs.indexOf('clearcoatNormalMap') > -1"> clearcoatNormalMap       <img-picker :material="material" type="clearcoatNormalMap" @onChange="updateMaterial" />
+    </div>
+    <div v-if="attrs.indexOf('displacementMap') > -1"> displacementMap <img-picker :material="material" type="displacementMap" @onChange="updateMaterial" /></div>
+    <div v-if="attrs.indexOf('roughnessMap') > -1"> roughnessMap <img-picker :material="material" type="roughnessMap" @onChange="updateMaterial" /></div>
+    <div v-if="attrs.indexOf('metalnessMap') > -1"> metalnessMap
+
+      <img-picker :material="material" type="metalnessMap" @onChange="updateMaterial" />
+    </div>
+    <div v-if="attrs.indexOf('specularMap') > -1"> specularMap
+      <img-picker :material="material" type="specularMap" @onChange="updateMaterial" />
+
+    </div>
+    <div v-if="attrs.indexOf('envMap') > -1"> envMap
+      <img-picker :material="material" type="envMap" @onChange="updateMaterial" />
+
+    </div>
+    <div v-if="attrs.indexOf('lightMap') > -1"> lightMap
+      <img-picker :material="material" type="lightMap" @onChange="updateMaterial" />
+
+    </div>
+    <div v-if="attrs.indexOf('aoMap') > -1"> aoMap
+      <img-picker :material="material" type="aoMap" @onChange="updateMaterial" />
+
+    </div>
+    <div v-if="attrs.indexOf('emissiveMap') > -1"> emissiveMap
+      <img-picker :material="material" type="emissiveMap" @onChange="updateMaterial" />
+
+    </div>
+    <div v-if="attrs.indexOf('gradientMap') > -1"> gradientMap
+      <img-picker :material="material" type="gradientMap" @onChange="updateMaterial" />
+
+    </div>
     <div v-if="attrs.indexOf('side') > -1">
       side:
       <el-radio-group v-model="material.side">

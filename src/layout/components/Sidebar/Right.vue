@@ -46,7 +46,7 @@
         </el-tabs>
       </PerfectScrollbar>
       <div class="text-center absolute w-full bottom-0 pb-4">
-        <el-button>重置</el-button>
+        <el-button @click="reset">重置</el-button>
         <el-button type="danger" @click="remove">删除</el-button>
       </div>
     </div>
@@ -67,7 +67,8 @@ export default {
   data() {
     return {
       activeName: 'attributes',
-      height: null
+      height: null,
+      init: null
       // size2: {
       //   x: 1,
       //   y: 1,
@@ -77,7 +78,7 @@ export default {
   },
   mounted() {
     this.setScrollerHeight()
-
+    this.init = this.intersect.clone()
     window.addEventListener('resize', this.setScrollerHeight)
   },
   beforeDestroy() {
@@ -100,6 +101,12 @@ export default {
     input() {
       console.log(2)
     },
+    reset() {
+      this.scene.add(this.init)
+      const old = this.intersect
+      this.setIntersect(this.init)
+      this.removeMesh(old)
+    },
     updateMesh() {
       this.intersect.scale.x = this.size.x
       this.intersect.scale.y = this.size.y
@@ -110,16 +117,23 @@ export default {
     },
     remove() {
       console.log('remove')
-
-      this.intersect.traverse((obj) => {
-        obj.type === 'Mesh' && obj.geometry.dispose()
+      this.removeMesh(this.intersect)
+      this.setIntersect(null)
+    },
+    removeMesh(mesh) {
+      mesh.traverse((obj) => {
+        obj.type === 'Mesh' && mesh.geometry.dispose()
       }
       )
       // this.removeMat()
-
-      this.setModels(this.models.filter(model => this.intersect.uuid !== model.uuid))
-      this.scene.remove(this.intersect)
-      this.setIntersect(null)
+      const excludedModels = this.models.filter(
+        model => {
+          console.log(9)
+          return mesh.id !== model.id
+        }
+      )
+      this.setModels(excludedModels)
+      this.scene.remove(mesh)
     }
 
   }
